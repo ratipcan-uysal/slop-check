@@ -1,0 +1,347 @@
+# Türkçe teller: her biri nedir, neden makine kokar, nasıl onarılır
+
+Türkçe yapay zeka metninin kendi imzaları var ve bunların çoğu İngilizce
+listelerde geçmez. Sebep basit: Türkçe üretilen metnin büyük kısmı İngilizce
+düşünülüp Türkçeye taşınıyor. Ortaya çıkan şey dilbilgisi olarak kusursuz,
+ama Türkçe konuşan kimsenin kurmayacağı cümleler.
+
+Aşağıdaki eşikler tahmin değil. Yayımlanmış 87.000 kelimelik insan Türkçesi
+(iki kitap) ile sentetik bir makine Türkçesi örneği arasında ölçüldü. Çoğu
+metrikte aradaki fark on kat.
+
+## İçindekiler
+
+1. sadece … değil, aynı zamanda
+2. -dir / -maktadır
+3. -ebilir yığılması
+4. Hazır bağlayıcılar
+5. Şişmiş ifadeler
+6. Üçlü diziler
+7. Edilgen çatı
+8. Em dash ve künye çizgisi
+9. Cümle açılışı yoğunlaşması
+10. Ölçülemeyenler
+
+---
+
+## 1. sadece … değil, aynı zamanda
+
+**Ateşleme eşiği:** 1000 kelimede 2,0. İnsan tabanı 0,7; makine örneğinde 15,2.
+
+**Nedir:** İngilizce `not only X but also Y` kalıbının birebir çevirisi.
+"Şirketler sadece rekabet avantajı için değil, aynı zamanda sürdürülebilir
+büyüme için de veriye yöneliyor."
+
+**Neden makine kokar:** Türkçede bu kalıp var ama nadir ve vurgulu. Bir şeyin
+gerçekten iki ayrı sebebi olduğunda kurulur. Üretilen metinde ise her paragrafta
+bir tane çıkar, çünkü iki ismi birbirine bağlamanın en ucuz yolu.
+
+**Yanlış onarım:** "yalnızca ... değil, bunun yanında" yapmak. Aynı kalıp,
+farklı kelimeler.
+
+**Doğrusu:** İki cümleye böl, ya da ikinci yarıyı at.
+
+> Önce: Veri sadece bir varlık değil, aynı zamanda karar almanın temelidir.
+> Sonra: Kararlar veriyle alınıyor.
+
+---
+
+## 2. -dir / -maktadır
+
+**Ateşleme eşiği:** 1000 kelimede 1,5. İnsan tabanı 0,2; makine örneğinde 20,2.
+
+**Nedir:** "gerekmektedir", "sağlamaktadır", "bulunmaktadır", "önemlidir",
+"mümkündür". Resmî yazışma ve mevzuat kipi.
+
+**Neden makine kokar:** bu ek bir iddiayı kişisizleştirir ve tartışılmaz
+gösterir. Kim söylüyor belli değil, itiraz edilecek bir özne yok. Üretilen
+metin bu tonu sever çünkü sorumluluk almadan otorite kurar.
+
+**Doğrusu:** yazan Türkçe "önemli", "gerekiyor", "sağlıyor" der. Özneyi geri
+koy: kim gerekli buluyor?
+
+> Önce: Doğru metriklerin belirlenmesi büyük önem taşımaktadır.
+> Sonra: Yanlış metrik seçersen geri kalan her şey boşa gider.
+
+İkinci cümle bir iddia. Birincisi bir ses tonu.
+
+---
+
+## 3. -ebilir yığılması
+
+**Ateşleme eşiği:** 1000 kelimede 11. İnsan tabanı 6,0-6,8; makine örneğinde
+30,3.
+
+**Nedir:** "değerlendirilebilir", "geliştirilebilir", "dönüştürülebilir",
+"söyleyebiliriz", "diyebiliriz". Her cümlenin bir ihtimalle yumuşatılması.
+
+**Neden makine kokar:** eşik yüksek çünkü Türkçede yeterlik kipi doğal ve sık.
+Sorun kullanımı değil, yoğunluğu. Üretilen metin hiçbir şeyin arkasında durmak
+istemez, o yüzden her fiili olabilirliğe çevirir. Sonuçta hiçbir cümle yanlış
+çıkamaz, ama hiçbiri bir şey de söylemez.
+
+**Doğrusu:** bir şey söyle ve arkasında dur. Gerçekten belirsizse belirsizliği
+adlandır, ekle gizleme.
+
+> Önce: Ekiplerin veri okuryazarlığı geliştirilebilir.
+> Sonra: Ekibin yarısı grafiği yanlış okuyor. Bunu eğitimle çözebiliriz, ama
+> denemedik.
+
+---
+
+## 4. Hazır bağlayıcılar
+
+**Ateşleme eşiği:** 1000 kelimede 1,5. İnsan tabanı 0,4; makine örneğinde 35,4.
+
+**Nedir:** "Sonuç olarak", "Özetle", "Kısacası", "Bu bağlamda", "Bu noktada",
+"Bu sayede", "Bir diğer deyişle", "Unutmamak gerekir ki", "Belirtmek gerekir
+ki", "İlk olarak / Son olarak".
+
+**Neden makine kokar:** paragrafları fikirle değil, dikişle bağlarlar. "Bu
+bağlamda" hiçbir bağlam kurmaz; sadece bir sonraki cümlenin geleceğini haber
+verir. "Unutmamak gerekir ki" ise okura ne yapması gerektiğini söyleyen boş bir
+emirdir.
+
+**Doğrusu:** çoğunu sil ve paragrafı oku. Fikir zaten bağlıysa bağlaç gereksiz;
+bağlı değilse bağlaç kurtarmaz, o zaman eksik olan cümledir.
+
+Türkçenin gerçek bağlayıcıları kısa ve konuşkandır: "ama", "yani", "oysa",
+"gerçi", "zaten". Bunlar sayılmaz çünkü kalıp değil, ses.
+
+---
+
+## 5. Şişmiş ifadeler
+
+**Ateşleme eşiği:** 1000 kelimede 1,2. İnsan tabanı 0; makine örneğinde 25,3.
+
+**Nedir:** "kritik öneme sahip", "hayati önem taşıyor", "büyük önem taşıyor",
+"önemli bir rol oynuyor", "teknoloji dünyasında", "dijital çağında",
+"son derece", "dikkat çekici".
+
+**Neden makine kokar:** hepsi ağırlık iddia eder, hiçbiri bilgi taşımaz.
+"Teknoloji dünyasında" İngilizce `in the world of technology` kalıbının
+çevirisi ve cümleden çıkarıldığında hiçbir şey kaybolmaz.
+
+**Doğrusu:** önemi iddia etme, sonucunu yaz.
+
+> Önce: Veri kalitesi kritik öneme sahiptir.
+> Sonra: Veri kirliyse aylarca yanlış grafiğe bakarsın ve kimse fark etmez.
+
+---
+
+## 6. Üçlü diziler
+
+**Ateşleme eşiği:** 1000 kelimede 5. İnsan tabanı 2,9-3,2; makine örneğinde
+10,1.
+
+**Nedir:** "hızlı, güvenilir ve ölçeklenebilir". Üç öğeli paralel dizi.
+
+**Neden eşik yüksek:** Türkçede "X, Y ve Z" sıradan bir liste yapısı ve insan
+metninde de bolca geçer. Ölçüm bunu ayıramaz, o yüzden eşik insan tabanının
+epey üstünde. Tell olan şey sıklık değil, üçüncü öğenin gereksizliği.
+
+**Doğrusu:** kaç tane olduğunu say. Üçüncü sıfat ritim için eklendiyse çıkar.
+Beş tane varsa beşini yaz.
+
+---
+
+## 7. Edilgen çatı
+
+**Ateşleme eşiği:** 1000 kelimede 9. İnsan tabanı 4,4-5,0; makine örneğinde
+35,4.
+
+**Nedir:** "belirlenmelidir", "değerlendirilir", "yapılmakta", "çıkarılmalıdır".
+
+**Neden makine kokar:** içinde kimsenin olmadığı cümleler. Üretilen kurumsal
+Türkçe neredeyse tamamen edilgendir çünkü kimin yapacağını bilmez ve bilmediğini
+belli etmek istemez.
+
+**Doğrusu:** özneyi geri koy. Kim çıkaracak envanteri? O cümlede o kişi yoksa,
+plan da yok demektir.
+
+> Önce: Veri kaynaklarının envanteri çıkarılmalıdır.
+> Sonra: Envanteri veri ekibi çıkarır, iki haftada biter.
+
+---
+
+## 8. Em dash ve künye çizgisi
+
+**Ateşleme eşiği:** 1000 kelimede 0,5.
+
+**Dikkat:** Türkçede uzun çizginin iki meşru işi var ve ikisi de sayımdan
+çıkarılır. Satır başındaki konuşma çizgisi, ve alıntı sonundaki künye
+("— Albert Camus"). Bu ayrım olmadan metrik insan metnini yakalar: yazarın
+kendi kitabında 274 uzun çizginin 272'si künyeydi ve düzeltme öncesi kitap
+1000 kelimede 6,0 ile bayrak alıyordu.
+
+**Cümle içi uzun çizgi** ise Türkçede zaten seyrek. Türkçe genelde parantez,
+virgül ya da iki nokta kullanır. Metinde sık geçiyorsa büyük ihtimalle
+İngilizceden taşınmıştır.
+
+---
+
+## 9. Cümle açılışı yoğunlaşması
+
+**Ateşleme eşiği:** cümlelerin %13'ünden fazlası aynı kelimeyle başlıyorsa.
+
+Türkçede bu genelde "Bu" olur: "Bu bağlamda", "Bu sayede", "Bu noktada",
+"Bu süreçte". İnsan tabanı %5-6,8; makine örneğinde %16,7.
+
+**Doğrusu:** Türkçe cümle sırası esnektir, bunu kullan. Vurgulanacak öğeyi
+yükleme yaklaştır, cümleyi zarfla, nesneyle ya da yan cümleyle aç. "Bu sayede
+karar vericiler güvenilir bir temele kavuşur" yerine "Karar vericiler artık
+neye baktıklarını biliyor."
+
+---
+
+## 10. Ölçülemeyenler: kanaat katmanı
+
+Aşağıdakilerin hiçbirinin sayısı yok ve script hiçbirini yakalamayacak. Bu
+onları atlama gerekçesi değil, değerlendirmenin hangi kısmının ölçüm hangi
+kısmının kanaat olduğunu açıkça söyleme gerekçesi. Yazar kanaate itiraz
+edebilmeli.
+
+### Uydurma paradoks
+
+Sıradan bir kaydı geri dönüş gibi sunmak. "Bazen ilerlemek için durmak
+gerekir." "Kontrolü kazanmanın yolu onu bırakmaktır." "En büyük güç,
+güçsüzlüğü kabul etmektir." Paradoks gerçek bir çelişkiyi açığa çıkarmalı.
+Bunlar tanıdık bir gözlemi süsleyip beğenilmeyi bekliyor.
+
+### Sahte derinlik
+
+Felsefi duran ama yorumlanabilir, sınanabilir, itiraz edilebilir hiçbir iddia
+taşımayan cümleler. "Değişim, varoluşun kaçınılmaz doğasıdır." "İnsan, kendi
+hikâyesini yazan bir varlıktır." "Hayat cevaplardan çok sorularla ilgilidir."
+Sor: bu cümle okurun neyi anlamasını sağlıyor? Cevap yoksa cümleyi yeniden
+yazma, sil.
+
+### Zorlama imge
+
+Bilgi veren metni edebi hissettirmek için eklenen mecaz. Tekrar eden küçük bir
+küme var: yolculuk, manzara, dokuma, dans, köprü, pusula, kilidini açmak,
+sularda yol almak, yeni bir çağın şafağı. Mecaz bir ilişkiyi netleştiriyorsa
+ya da bu yazarın gerçekten konuşma biçimiyse kalsın. Doku için oradaysa çıksın.
+
+### Ödünç samimiyet
+
+Metnin hak etmediği bir yakınlığı taklit etmek. "Hepimizin bildiği gibi",
+"Kabul edelim", "Bir an için düşünün", "Gelin birlikte", "Belki siz de".
+Okura doğrudan seslenmek türe ve yazarın sesine uyuyorsa sorun değil. Analitik
+bir metnin ilk paragrafında beliriyorsa tell.
+
+### Gerekçesiz retorik soru
+
+Cevabı bariz olan, hemen arkasından verilen ya da konuyla ilgisi olmayan
+sorular. "Peki bütün bunlar ne anlama geliyor?" "Ama gerçekten böyle mi?"
+Sonraki iddiayı doğrudan yaz. Retorik soru ancak okurun gerçekten oturup
+düşünmek zorunda kalacağı bir baskı yaratıyorsa yerini hak eder.
+
+### Jenerik kapanış
+
+Üç biçimi var, üçü de metni bitirir ama sonuca bağlamaz.
+
+*Gelişmesiz özet.* "Sonuç olarak", "Özetlemek gerekirse", "Tüm bunlar göz
+önüne alındığında", "Gelecekte X'in önemi artmaya devam edecektir." Kapanış
+girişi tekrar eder ve hiçbir şey eklemez.
+
+*Motivasyon şişmesi.* "Değişim bizimle başlar." "Gelecek, onu şekillendirenlerin
+olacaktır." "Birlikte daha iyi bir dünya kurabiliriz." Analitik metin son
+paragrafta motivasyon konuşmasına dönüşür.
+
+*Yapay açık uçluluk.* "Belki de asıl sormamız gereken soru budur." "Peki biz
+bu gelecekte kim olmayı seçeceğiz?" Derinlik görüntüsü için iliştirilmiş
+belirsiz soru.
+
+İyi kapanış şunlardan en az birini yapar: argümanın sonucunu söyler, geriye
+kalan gerilimi açığa çıkarır, iddiayı daraltır, somut bir görüntüye döner,
+hâlâ bilinmeyeni adlandırır, ya da tek bir kesin soru bırakır. Yoksa akıl
+yürütme nerede bitiyorsa orada bitir.
+
+### Başlık enflasyonu ve listeleme
+
+İki paragrafta bir başlık, ya da "Zorluk", "Fırsat", "Gelecek" gibi jenerik
+başlıklar yapıyı göstermez, taklit eder. Madde işaretleri için de aynısı
+geçerli: bir fikir diğerine sebep oluyorsa, sıra önemliyse, ya da bir kayıt
+kendinden önceki iddiaya bağlıysa o düzyazıdır. Liste gerçekten paralel ve
+birbirinden bağımsız öğeler içindir.
+
+### Eşanlamlı döndürme
+
+Tekrardan kaçınmak için aynı şeyi sürekli yeniden adlandırmak: ürün önce
+platform, sonra çözüm, sonra ekosistem, sonra deneyim olur. Teknik ve referans
+metinde bu gerçek bir hata, çünkü sabit terim çeşitlilikten daha anlaşılır ve
+her yeni kelime var olmayan bir ayrım ima eder. Denemede ve eleştiride ise
+sözcük çeşitliliği normaldir ve eskidir. Ölçüt şu: okur iki farklı şeyden
+bahsedildiğini sanabilir mi?
+
+### Soyut isim zincirleri
+
+Neredeyse tamamen soyutlamadan kurulu, içinde ne özne ne eylem olan cümleler.
+"Dijital dönüşüm süreçlerinin etkin yönetimi, kurumsal çevikliğin
+sürdürülebilirliği açısından kritik önem taşımaktadır." Sor: kim yapıyor, ne
+yapıyor, hangi koşulda, sonucunda ne değişiyor? Kaynakta hangisi varsa onunla
+yeniden yaz, fazlasını uydurma.
+
+### Kanıtın ötesine geçen nedensellik
+
+"X, Y'ye yol açar", "X'in temel nedeni Y'dir", "bu durum kaçınılmaz olarak",
+kaynak yalnızca sıra, ilişki ya da ihtimal desteklerken. Onarım her şeyi
+yumuşatmak değil, o da metni başka yönden düzleştirir. Dilin gücünü kanıtın
+gücüne eşitlemek: "katkıda bulunabilir", "ilişkili görünüyor", "olası
+açıklamalardan biri".
+
+### Gereksiz açıklama
+
+"Başka bir deyişle", "Bunun anlamı şudur", "Bu bize şunu göstermektedir", ve
+arkasından okurun zaten yaptığı çıkarımın tekrarı. Açıklama kesinlik
+kazandırıyorsa kalsın. Bir önceki cümleyi daha donuk kelimelerle tekrarlıyorsa
+çıksın.
+
+### Çeviri kokusu
+
+Cümle Türkçe ama düşünce İngilizce. En sık işareti, Türkçede gereksiz olan
+iyelik ve ilgeç zincirleri: "şirketin veri stratejisinin uygulanmasının
+önemi". Türkçe bunu "şirket veriyi nasıl kullanacak" diye sorar. Hiçbir sayım
+bunu göremez, okumak gerekir.
+
+### -arak / -ıp zincirleri
+
+"Verileri toplayarak, analiz edip raporlayarak karar süreçlerine katkı
+sağlar." Üç ulaç arka arkaya Türkçede nefes bırakmaz. Böl.
+
+### Boş iddialar
+
+Yanlış olamayacak bir cümle bir şey taşımıyordur. "Dijital dönüşüm bir insan
+projesidir" cümlesinin yanlış olması için dünyada neyin değişmesi gerekir?
+Hiçbir şeyin. O yüzden bir şey söylemiyor.
+
+### Simetri
+
+Her bölümün aynı uzunlukta, her paragrafın aynı iç yapıda olması. İnsan metni
+pürüzlüdür, çünkü bazı kısımlar daha çok yer hak eder.
+
+### Ödünç ses
+
+Yapı olarak temiz ama başkası gibi duran metin. Genelde sebebi şudur: taslak
+yazarın düşündüğünü değil, konu hakkında zaten yazılmış olanı özetliyor.
+Hiçbir script bunu yakalamaz.
+
+---
+
+## Bu belgeye alınmayanlar
+
+İki kural bilerek dışarıda bırakıldı, ikisi de yaygın bir anti-slop
+kılavuzundan geliyor.
+
+**"Hepimiz / herkes / kimse" genellemesi.** O kılavuz bunları "desteksiz
+genelleme" diye işaretliyor. Ölçüm tersini söylüyor: bu yazarın iki
+yayımlanmış kitabında 260 kez geçiyorlar, üretilmiş örnekte sıfır kez. Yapay
+zeka yazısını değil, Türkçe deneme dilini ölçüyorlar. Ne metrikte ne burada
+yer alıyorlar.
+
+**Sahte denge ve epistemik düzleştirme.** ("Her iki tarafın da haklı olduğu
+noktalar var", "olabilir"i "öyledir" yapmak.) Bunlar düzyazı hatası değil,
+akıl yürütme ve doğruluk hatası. Ayrı bir işin konusu. Yalnız ikincisinin
+yeniden yazma sırasındaki hâli SKILL.md'de duruyor, çünkü orada metni bozan
+şey editördür.
