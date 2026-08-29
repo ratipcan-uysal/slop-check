@@ -97,7 +97,15 @@ one's just as recognisable.
 
 ## Install
 
-As a Claude Code skill:
+As a Claude Code plugin:
+
+```bash
+/plugin marketplace add ratipcan-uysal/slop-check
+/plugin install slop-check
+```
+
+Or clone and symlink it, if you would rather have the files where you can edit
+them:
 
 ```bash
 git clone https://github.com/ratipcan-uysal/slop-check.git

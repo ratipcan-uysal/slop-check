@@ -1,0 +1,20 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "slop-check",
+  "description": "One skill: measure the shape of machine-written prose in Turkish and English, and fix what is over the line.",
+  "owner": {
+    "name": "Ratip Can Uysal"
+  },
+  "plugins": [
+    {
+      "name": "slop-check",
+      "description": "Measures the structural signatures of machine-written prose in Turkish and English, against thresholds calibrated on published human writing rather than taste. Reports the numbers, then fixes what is over the line.",
+      "author": {
+        "name": "Ratip Can Uysal"
+      },
+      "category": "productivity",
+      "source": "./",
+      "homepage": "https://github.com/ratipcan-uysal/slop-check"
+    }
+  ]
+}

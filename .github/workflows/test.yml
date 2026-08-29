@@ -1,0 +1,19 @@
+name: test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      # The suite is the argument this repo makes: human prose must stay clean
+      # and generated prose must stay flagged. If either stops being true, a
+      # threshold has drifted into decoration.
+      - run: ./scripts/test.sh
