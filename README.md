@@ -1,4 +1,4 @@
-# prose-tells
+# slop-check
 
 Measures the structural signatures of machine-written prose in **Turkish and
 English**, reports each against a calibrated threshold, and only then edits.
@@ -14,7 +14,7 @@ node scripts/measure.mjs draft.md --lang=en
 ```
 
 ```
-prose-tells  ·  draft.md
+slop-check  ·  draft.md
 8250 words, 509 sentences, mean 15.8 words, language en
 
   ! Em dashes                  6.8  per 1k words
@@ -100,8 +100,8 @@ one's just as recognisable.
 As a Claude Code skill:
 
 ```bash
-git clone https://github.com/ratipcan-uysal/prose-tells.git
-ln -s "$(pwd)/prose-tells" ~/.claude/skills/prose-tells
+git clone https://github.com/ratipcan-uysal/slop-check.git
+ln -s "$(pwd)/slop-check" ~/.claude/skills/slop-check
 ```
 
 Or use `scripts/measure.mjs` on its own. It reads `.md`, `.txt`, `.mdx` and

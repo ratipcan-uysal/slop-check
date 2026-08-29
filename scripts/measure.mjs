@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * prose-tells: measure the structural signatures of machine-written prose.
+ * slop-check: measure the structural signatures of machine-written prose.
  *
  * Word blacklists date fast and only catch the laziest output. What survives
  * a search-and-replace pass is the shape of the writing: uniform sentence
@@ -201,7 +201,7 @@ if (asJson) {
 } else {
   const pad = (s, n) => String(s).padEnd(n);
   const lpad = (s, n) => String(s).padStart(n);
-  console.log(`\nprose-tells  ·  ${files.join(", ")}`);
+  console.log(`\nslop-check  ·  ${files.join(", ")}`);
   console.log(`${W} words, ${sents.length} sentences, mean ${mean.toFixed(1)} words, language ${lang}\n`);
   const wLabel = Math.max(...METRICS.map(m => m.label.length));
   for (const m of METRICS) {

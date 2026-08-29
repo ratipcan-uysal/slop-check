@@ -1,9 +1,9 @@
 ---
-name: prose-tells
+name: slop-check
 description: Measure and remove the structural signatures of machine-written prose in Turkish and English. Runs a deterministic script that counts em dashes, not-X-but-Y frames, sentence-opener concentration, contraction rate, and language-specific tells, reports each against a calibrated threshold, then rewrites what is over the line and shows a before/after table. Use this whenever writing or editing prose a human will read: blog posts, landing pages, documentation, reports, essays, newsletters, README bodies, long commit messages - and always before delivering substantial written content. Trigger it on "this reads like AI", "make it sound human", "anti-slop", "no em dashes", "yapay zeka yazmis gibi", "daha insan olsun", "em dashleri ucur", or any request to check, humanise, de-slop, or tighten a draft's voice.
 ---
 
-# prose-tells
+# slop-check
 
 Banned-word lists catch the laziest output and nothing else. Strip every
 `delve` and `leverage` out of a draft and it can still be unmistakably machine
@@ -47,7 +47,7 @@ verify, disagree with, or hold you to.
    baseline to show at the end.
 
    ```bash
-   node ~/.claude/skills/prose-tells/scripts/measure.mjs <file...> [--lang=tr|en|auto]
+   node ~/.claude/skills/slop-check/scripts/measure.mjs <file...> [--lang=tr|en|auto]
    ```
 
    It reads `.md`, `.txt`, `.mdx` and `.json` content files (from JSON it
@@ -262,7 +262,7 @@ zero after. `fixtures/en-slop.md` is a compact positive that trips nine of ten.
 **Self-test.** After changing anything in the script, rerun all of these:
 
 ```bash
-S=~/.claude/skills/prose-tells
+S=~/.claude/skills/slop-check
 node $S/scripts/measure.mjs $S/SKILL.md --lang=en             # expect: nothing flagged
 node $S/scripts/measure.mjs $S/fixtures/en-slop.md --lang=en  # expect: 9 of 10
 node $S/scripts/measure.mjs $S/fixtures/tr-slop.md --lang=tr  # expect: 9 of 12
