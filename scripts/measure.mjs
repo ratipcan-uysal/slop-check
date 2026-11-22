@@ -183,31 +183,70 @@ if (lang === "en") {
   add("triad", "Rule-of-three lists", per1k(count(/\b\w+, \w+,? and \w+\b/g)), "per 1k words", v => v > 2.5,
       "Three parallel items, over and over, is a rhythm nobody chooses that often.");
 } else {
+  // JavaScript's \b and \w know only ASCII letters, so ş, ı, ö, ç, ü and ğ
+  // count as word boundaries. /\bözetle\b/ never matched and /\w+ilmiş\b/
+  // never matched either; until 1.1.0 the Turkish metrics silently skipped
+  // every pattern that starts or ends with one of those letters. Turkish
+  // patterns now use Unicode letter boundaries, on text lower-cased with
+  // Turkish rules so sentence-initial İlk and Özetle are counted too.
+  const trText = text.toLocaleLowerCase("tr");
+  const trCount = src => (trText.match(new RegExp(`(?<![\\p{L}\\p{N}])(?:${src})(?![\\p{L}\\p{N}])`, "gu")) || []).length;
+  const trCountLoose = src => (trText.match(new RegExp(src, "gu")) || []).length;
+
   add("sadece", "sadece … değil, aynı zamanda", per1k(
-        count(/\bsadece\b[^.!?]{0,80}\bde[ğg]il\b/gi) + count(/\baynı zamanda\b/gi)),
+        trCount("sadece[^.!?]{0,80}?(?<!\\p{L})de[ğg]il") + trCount("aynı zamanda")),
       "per 1k words", v => v > 2.0,
       "İngilizce not only/but also kalıbının birebir çevirisi. Türkçede doğal karşılığı iki ayrı cümledir.");
   add("dir", "-dir / -maktadır ekleri", per1k(
-        count(/\b\w+(maktadır|mektedir|maktadırlar|mektedirler)\b/gi) +
-        count(/\b(önemlidir|gereklidir|mümkündür|gerekmektedir|bulunmaktadır|sağlamaktadır|olmaktadır)\b/gi)),
+        trCount("\\p{L}+(?:maktadır|mektedir|maktadırlar|mektedirler)") +
+        trCount("önemlidir|gereklidir|mümkündür|gerekmektedir|bulunmaktadır|sağlamaktadır|olmaktadır")),
       "per 1k words", v => v > 1.5,
       "Resmî yazışma kipi. Konuşan Türkçe önemli, gerekiyor, sağlıyor der.");
-  add("ebilir", "-ebilir / -abilir yığılması", per1k(count(/\b\w+[ae]bilir(iz|siniz|ler)?\b/gi)), "per 1k words", v => v > 11,
+  add("ebilir", "-ebilir / -abilir yığılması", per1k(trCount("\\p{L}+[ae]bilir(?:iz|siniz|ler)?")), "per 1k words", v => v > 11,
       "Her cümleyi ihtimalle yumuşatmak. Bir şey söyleyip arkasında durmak daha insan.");
-  add("baglayici", "Hazır bağlayıcılar", per1k(count(/\b(sonuç olarak|özetle|kısacası|bu bağlamda|bu noktada|bu sayede|bir diğer deyişle|unutmamak gerekir ki|belirtmek gerekir ki|ilk olarak|son olarak)\b/gi)),
+  add("baglayici", "Hazır bağlayıcılar", per1k(trCount("sonuç olarak|özetle|kısacası|bu bağlamda|bu noktada|bu sayede|bir diğer deyişle|unutmamak gerekir ki|belirtmek gerekir ki|ilk olarak|son olarak")),
       "per 1k words", v => v > 1.5,
       "Paragrafları hazır kalıplarla dikmek. Fikir zaten bağlıysa bağlaca gerek yok.");
-  add("sismis", "Şişmiş ifadeler", per1k(count(/\b(kritik öneme sahip|hayati önem|büyük önem taşı\w+|dünyasında|çağında|önemli bir rol oyn\w+|dikkat çekici|göze çarp\w+|son derece)\b/gi)),
+  add("sismis", "Şişmiş ifadeler", per1k(trCount("kritik öneme sahip|hayati önem|büyük önem taşı\\p{L}+|dünyasında|çağında|önemli bir rol oyn\\p{L}+|dikkat çekici|göze çarp\\p{L}+|son derece")),
       "per 1k words", v => v > 1.2,
       "teknoloji dünyasında, kritik öneme sahip: hiçbir şey söylemeyen ağırlık.");
-  add("uclu", "Üçlü sıfat dizileri", per1k(count(/\b[\wğüşıöçĞÜŞİÖÇ]+, [\wğüşıöçĞÜŞİÖÇ]+ ve [\wğüşıöçĞÜŞİÖÇ]+\b/g)), "per 1k words", v => v > 5,
+  add("uclu", "Üçlü sıfat dizileri", per1k(trCount("\\p{L}+, \\p{L}+ ve \\p{L}+")), "per 1k words", v => v > 5,
       "hızlı, güvenilir ve ölçeklenebilir. Üç sıfat üst üste bir seçim değil, bir refleks.");
-  add("phrases", "Hazır ibare", per1k(count(/(hızla değişen dünya|teknolojinin hayatımızın|insanlık tarihi boyunca|geçmişten günümüze|bu yazıda|bu makale|ele alacağız|incelemeyi amaçla|gelin birlikte|göz ardı edilemez|her zamankinden daha önemli|ışık tut|gözler önüne ser|derinlemesine|istifade et|yeni bir dönemin kapısını|geleceğe yön ver|fark yarat|sürdürülebilir bir gelecek|bütüncül bir yaklaşım|güçlü bir hatırlatıcı|tam da bu nedenle|belki de asıl|bu noktada|bu bağlamda|öte yandan|bununla birlikte|dahası|son olarak|başka bir deyişle|bunun anlamı şudur|bu bize şunu göster|bir yandan|her iki bakış açısı|kabul edelim|bir an için düşün|belki siz de|hepimizin bildiği gibi|peki bütün bunlar|bir yolculuk|özünde|adeta|büyük önem taş|kritik bir rol|sonuç olarak|özetle)/gi)),
+  // Substring matching on purpose: several entries are stems (gözler önüne ser,
+  // fark yarat) that must match every inflection.
+  add("phrases", "Hazır ibare", per1k(trCountLoose("hızla değişen dünya|teknolojinin hayatımızın|insanlık tarihi boyunca|geçmişten günümüze|bu yazıda|bu makale|ele alacağız|incelemeyi amaçla|gelin birlikte|göz ardı edilemez|her zamankinden daha önemli|ışık tut|gözler önüne ser|derinlemesine|istifade et|yeni bir dönemin kapısını|geleceğe yön ver|fark yarat|sürdürülebilir bir gelecek|bütüncül bir yaklaşım|güçlü bir hatırlatıcı|tam da bu nedenle|belki de asıl|bu noktada|bu bağlamda|öte yandan|bununla birlikte|dahası|son olarak|başka bir deyişle|bunun anlamı şudur|bu bize şunu göster|bir yandan|her iki bakış açısı|kabul edelim|bir an için düşün|belki siz de|hepimizin bildiği gibi|peki bütün bunlar|bir yolculuk|özünde|[aâ]deta|büyük önem taş|kritik bir rol|sonuç olarak|özetle|" +
+        // Added in 1.1.0 from yucezerey/turkish-anti-ai-skill (MIT), kept only
+        // where both published books measure zero.
+        "inkar edilemez|dönüm noktası|çığır açan|kilometre taşı|geniş bir yelpaze|zengin bir (?:doku|mozaik)|kusursuz bir şekilde|pürüzsüz bir şekilde|en büyük (?:kanıtı|göstergesi)|potansiyelini ortaya çıkar|bir üst seviyeye taşı|mercek altına al|olmakla kalmay|m[ae]kt[ae]d[ıi]r ki|(?:büyük|yüksek|ciddi|önemli|hayati) bir (?:önem taşı|artış göster|ivme kazan|önem arz)")),
       "per 1k words", v => v > 8,
-      "Hazır ibare, yazarın seçeceği cümlenin yerine geçiyor. Geniş ağ; üstündeki dar listelerle bilerek çakışır. Bu yazarın iki kitabında 1,2; üretilmiş örnekte 25,0. Ayrıntı: references/tells-tr.md.");
+      "Hazır ibare, yazarın seçeceği cümlenin yerine geçiyor. Geniş ağ; üstündeki dar listelerle bilerek çakışır. Ayrıntı: references/tells-tr.md.");
 
-  add("edilgen", "Edilgen çatı", per1k(count(/\b\w+(ılmakta|ilmekte|ulmakta|ünmekte|ılır|ilir|ulur|ünür|ılmış|ilmiş)\b/gi)), "per 1k words", v => v > 9,
+  // -ünür and -ünmekte were dropped in 1.1.0: once the boundary bug was fixed
+  // they matched düşünür, görünür and düşünmekte, none of which is passive.
+  add("edilgen", "Edilgen çatı", per1k(trCount("\\p{L}+(?:ılmakta|ilmekte|ulmakta|ülmekte|ılır|ilir|ulur|ülür|ılmış|ilmiş|ulmuş|ülmüş)")), "per 1k words", v => v > 9,
       "Kimin yaptığı belli olmayan cümleler. Özneyi geri koy.");
+
+  // Three or more sentences in a row closing on the same -DIr family is the
+  // textbook register, measured as runs per 1k words.
+  const ending = s => {
+    const w = (s.toLocaleLowerCase("tr").match(/\p{L}+/gu) || []).pop() || "";
+    // Duration words (yıllardır, sabahtır, bugündür) are not the copula. The
+    // bare form needs the whole word, or kolaydır would read as ay-dır.
+    if (/^(?:yıl|ay|gün|bugün|hafta|saat|dakika|asır|sabah|akşam|gece|zaman)[dt][ıiuü]r$|(?:yıl|ay|gün|hafta|saat|dakika|asır|gece)(?:lar|ler)d[ıiuü]r$/u.test(w)) return null;
+    if (/m[ae]kt[ae]d[ıi]r(?:lar|ler)?$/u.test(w)) return "maktadır";
+    if (/m[ıiuü]şt[ıiuü]r(?:lar|ler)?$/u.test(w)) return "mıştır";
+    if (/[dt][ıiuü]r(?:lar|ler)?$/u.test(w)) return "dır";
+    return null;
+  };
+  let runs = 0, run = 0, prev = null;
+  for (const s of sents) {
+    const c = ending(s);
+    run = c && c === prev ? run + 1 : (c ? 1 : 0);
+    if (run === 3) runs++;
+    prev = c;
+  }
+  add("dirseri", "Art arda -dır sonu", per1k(runs), "runs of 3+ per 1k", v => v > 3,
+      "Üç ve daha çok cümle üst üste aynı ek ailesiyle (-dır, -mıştır, -maktadır) bitiyor. Ders kitabı ritmi.");
 }
 
 // ── output ───────────────────────────────────────────────────────

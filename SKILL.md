@@ -246,28 +246,42 @@ matches; decide their grammatical role and source purpose by reading.
 | Şişmiş ifadeler (TR) | Over 1.2 per 1k. `kritik öneme sahip`, `teknoloji dünyasında`. |
 | Üçlü sıfat dizileri (TR) | Over 5 per 1k. |
 | Edilgen çatı (TR) | Over 9 per 1k. Sentences with nobody in them. |
-| Hazır ibare (TR) | Over 8 per 1k across ~45 ready-made phrases. A broad net that overlaps the narrow lists on purpose. |
+| Hazır ibare (TR) | Over 8 per 1k across ~60 ready-made phrases. A broad net that overlaps the narrow lists on purpose. |
+| Art arda -dır sonu (TR) | Over 3 per 1k: runs of three or more sentences in a row ending on the same `-dır`, `-mıştır` or `-maktadır` family. |
 
 ## Where the thresholds come from
 
 They are not invented. Each one sits between two measured populations.
 
-**Turkish negative control:** 87,000 words of published human writing (two of
-the author's own books). At calibration, zero of twelve metrics flagged after
-the citation-dash correction. Before that correction the em dash metric flagged his own book at
+**Turkish negative control:** about 83,000 words of published human writing
+(two of the author's own books). Zero of fourteen metrics flag on either book.
+The books are not in the repository. `SLOP_CHECK_TR_BOOKS` in `scripts/test.sh`
+reruns them from local exports. At first calibration, zero of twelve metrics
+flagged after the citation-dash correction. Before that correction the em dash metric flagged his own book at
 6.0 per 1k, because 272 of its 274 em dashes were attributions of the
 form `— Albert Camus`. That near miss is why the script strips citation and dialogue
 dashes before counting, and it's a good reminder that a metric which fires on
 genuinely human writing is worse than no metric at all.
 
-**Turkish positive control:** `fixtures/tr-slop.md`. The current script flags
-ten of thirteen metrics.
+**Turkish positive controls:** `fixtures/tr-slop.md` flags eleven of fourteen
+metrics. `fixtures/tr-slop-2.md`, written by a different author, flags eight.
+The second file exists so the thresholds are not tuned to one sample.
 The separation is roughly an order of magnitude on most: 0.7 against 15.2 for
 the `sadece` frame, 0.2 against 20.2 for `-maktadır`, 0.4 against 35.4 for the
 ready-made connectives.
 
-**Stock phrasing and Hazır ibare:** 1.2 per 1k in both Turkish books and 0 in
-the approved English, against 20.2 and 46.2 in the generated fixtures.
+**Stock phrasing and Hazır ibare:** at most 1.2 per 1k in the Turkish books
+and 0 in the approved English, against 20.2 to 46.2 in the generated fixtures.
+Phrases added from another anti-slop guide were kept only where both books
+measure zero. `yadsınamaz` and `tarafından gerçekleştirilmiş` were dropped
+because the author uses them.
+
+**The Unicode boundary fix (1.1.0).** Before 1.1.0 the Turkish patterns used
+JavaScript's `\b` and `\w`, which treat ş, ı, ö, ç, ü and ğ as non-letters.
+`Özetle`, `çağında`, `önemlidir` and every `-ılmış` were never counted. The
+fix raised the books' `-dir` count from 0.8 to 1.3 per 1k against a 1.5
+threshold, the narrowest margin in the Turkish table. No threshold moved,
+because the generated fixtures still sit an order of magnitude above it.
 
 Those lists deliberately exclude `hepimiz`, `herkes`, `kimse`, `we all`,
 `everyone`, `no one` and `people naturally`, which a widely circulated
@@ -312,7 +326,7 @@ The calibration counts above describe an earlier version.
 S=/absolute/path/to/loaded/slop-check
 node "$S/scripts/measure.mjs" "$S/SKILL.md" --lang=en             # expect: nothing flagged
 node "$S/scripts/measure.mjs" "$S/fixtures/en-slop.md" --lang=en  # expect: 10 of 11
-node "$S/scripts/measure.mjs" "$S/fixtures/tr-slop.md" --lang=tr  # expect: 10 of 13
+node "$S/scripts/measure.mjs" "$S/fixtures/tr-slop.md" --lang=tr  # expect: 11 of 14
 ```
 
 The two reference files are meant to trip the detector and always will, because

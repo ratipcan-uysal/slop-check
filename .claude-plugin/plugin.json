@@ -2,7 +2,7 @@
   "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
   "name": "slop-check",
   "description": "Measures the structural signatures of machine-written prose in Turkish and English, against thresholds calibrated on published human writing rather than taste. Reports the numbers, then fixes what is over the line.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": {
     "name": "Ratip Can Uysal"
   },

@@ -38,16 +38,17 @@ the machine.
 
 ## Where the thresholds come from
 
-The figures below describe the original calibration reported by this project.
+The figures below describe the calibration as of 1.1.0 (2026-11-22).
 The human files in `fixtures/` are excerpts for regression checks; they do not
-reproduce the full 87,000-word corpus or the full original English before/after pair.
+reproduce the full 83,000-word book corpus or the full original English before/after pair.
 
 | Corpus | Flags |
 |---|---|
-| Turkish, published, never edited against these metrics (87k words) | **0 of 13** |
+| Turkish, published, never edited against these metrics (83k words) | **0 of 14** |
 | English, drafted by a model and revised until the author accepted it | **0 of 11** |
 | The same English draft before that revision | **5 of 11** |
-| Turkish, generated | **10 of 13** |
+| Turkish, generated | **11 of 14** |
+| Turkish, generated, second author | **8 of 14** |
 | English, generated | **10 of 11** |
 
 Run `./scripts/test.sh` to reproduce the fixture rows.

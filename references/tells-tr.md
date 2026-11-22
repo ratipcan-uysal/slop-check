@@ -5,8 +5,9 @@ listelerde geçmez. Sebep basit: Türkçe üretilen metnin büyük kısmı İngi
 düşünülüp Türkçeye taşınıyor. Ortaya çıkan şey dilbilgisi olarak kusursuz,
 ama Türkçe konuşan kimsenin kurmayacağı cümleler.
 
-Aşağıdaki eşikler tahmin değil. Yayımlanmış 87.000 kelimelik insan Türkçesi
-(iki kitap) ile sentetik bir makine Türkçesi örneği arasında ölçüldü. Çoğu
+Aşağıdaki eşikler tahmin değil. Yayımlanmış yaklaşık 83.000 kelimelik insan Türkçesi
+(iki kitap) ile sentetik bir makine Türkçesi örneği arasında ölçüldü
+(son ölçüm 2026-11-22, Türkçe harf sınırı düzeltmesinden sonra). Çoğu
 metrikte aradaki fark on kat.
 
 Bu işaretler yazarlığı kanıtlamaz; incelenecek cümleleri gösterir. Aşağıdaki
@@ -25,13 +26,14 @@ Kaynağa dayanan metinlerde ayrıca [source-edits.md](source-edits.md) kullan.
 7. Edilgen çatı
 8. Em dash ve künye çizgisi
 9. Cümle açılışı yoğunlaşması
-10. Ölçülemeyenler
+10. Art arda aynı ekle biten cümleler
+11. Ölçülemeyenler
 
 ---
 
 ## 1. sadece … değil, aynı zamanda
 
-**Ateşleme eşiği:** 1000 kelimede 2,0. İnsan tabanı 0,7; makine örneğinde 15,2.
+**Ateşleme eşiği:** 1000 kelimede 2,0. İnsan tabanı 0,5-0,7; makine örneğinde 15,2.
 
 **Nedir:** İngilizce `not only X but also Y` kalıbının birebir çevirisi.
 "Şirketler sadece rekabet avantajı için değil, aynı zamanda sürdürülebilir
@@ -55,7 +57,8 @@ için gerekçe değildir.
 
 ## 2. -dir / -maktadır
 
-**Ateşleme eşiği:** 1000 kelimede 1,5. İnsan tabanı 0,2; makine örneğinde 20,2.
+**Ateşleme eşiği:** 1000 kelimede 1,5. İnsan tabanı 0,4-1,3; makine örneğinde 25,3.
+En dar aralık bu: ikinci kitap (Stoacı Kılavuz) `önemlidir`i 17 kez kullanıyor.
 
 **Nedir:** "gerekmektedir", "sağlamaktadır", "bulunmaktadır", "önemlidir",
 "mümkündür". Resmî yazışma ve mevzuat kipi.
@@ -78,7 +81,7 @@ kaynakta yoksa "yanlış seçersen her şey boşa gider" gibi bir sonuç ekleme.
 
 ## 3. -ebilir yığılması
 
-**Ateşleme eşiği:** 1000 kelimede 11. İnsan tabanı 6,0-6,8; makine örneğinde
+**Ateşleme eşiği:** 1000 kelimede 11. İnsan tabanı 6,5-7,2; makine örneğinde
 30,3.
 
 **Nedir:** "değerlendirilebilir", "geliştirilebilir", "dönüştürülebilir",
@@ -104,7 +107,7 @@ bilgiler eklenmiyor.
 
 ## 4. Hazır bağlayıcılar
 
-**Ateşleme eşiği:** 1000 kelimede 1,5. İnsan tabanı 0,4; makine örneğinde 35,4.
+**Ateşleme eşiği:** 1000 kelimede 1,5. İnsan tabanı 0,3-0,5; makine örneğinde 40,4.
 
 **Nedir:** "Sonuç olarak", "Özetle", "Kısacası", "Bu bağlamda", "Bu noktada",
 "Bu sayede", "Bir diğer deyişle", "Unutmamak gerekir ki", "Belirtmek gerekir
@@ -126,7 +129,7 @@ Türkçenin gerçek bağlayıcıları kısa ve konuşkandır: "ama", "yani", "oy
 
 ## 5. Şişmiş ifadeler
 
-**Ateşleme eşiği:** 1000 kelimede 1,2. İnsan tabanı 0; makine örneğinde 25,3.
+**Ateşleme eşiği:** 1000 kelimede 1,2. İnsan tabanı 0,1; makine örneğinde 30,3.
 
 **Nedir:** "kritik öneme sahip", "hayati önem taşıyor", "büyük önem taşıyor",
 "önemli bir rol oynuyor", "teknoloji dünyasında", "dijital çağında",
@@ -149,7 +152,7 @@ fark etmez" eklemek kaynakta olmayan süre ve sonuçları ileri sürer.
 
 ## 6. Üçlü diziler
 
-**Ateşleme eşiği:** 1000 kelimede 5. İnsan tabanı 2,9-3,2; makine örneğinde
+**Ateşleme eşiği:** 1000 kelimede 5. İnsan tabanı 1,1-2,9; makine örneğinde
 10,1.
 
 **Nedir:** "hızlı, güvenilir ve ölçeklenebilir". Üç öğeli paralel dizi.
@@ -166,8 +169,8 @@ varsa beşini yaz. Betik sıfatları tanımaz, sözcük kalıbını eşleştirir
 
 ## 7. Edilgen çatı
 
-**Ateşleme eşiği:** 1000 kelimede 9. İnsan tabanı 4,4-5,0; makine örneğinde
-35,4.
+**Ateşleme eşiği:** 1000 kelimede 9. İnsan tabanı 5,3-5,4; makine örneğinde
+40,4.
 
 **Nedir:** "belirlenmelidir", "değerlendirilir", "yapılmakta", "çıkarılmalıdır".
 
@@ -223,7 +226,29 @@ kaynakta yoksa akıcılık uğruna eklenmez.
 
 ---
 
-## 10. Ölçülemeyenler: kanaat katmanı
+## 10. Art arda aynı ekle biten cümleler
+
+**Ateşleme eşiği:** 1000 kelimede 3 seri. Bir seri, üç ya da daha çok
+cümlenin üst üste aynı ek ailesiyle (`-dır`, `-mıştır`, `-maktadır`) bitmesi.
+İnsan tabanı iki kitapta 0,3; makine örneğinde 10,1.
+
+**Neden makine kokar:** tek tek bakınca her cümle doğru. Sorun ritimde: her
+cümle aynı yere iner ve metin ders kitabı gibi okunur. Üretilen metin her
+cümleyi bir hüküm gibi kapatır, insan yazar ise hükümle anlatıyı, soruyu,
+yarım kalan cümleyi karıştırır.
+
+**Onarım:** Serinin içindeki ad cümlelerinde eki düşür ya da iki yüklemi
+birleştir. Ek gruplanabiliyorsa yalnız sonuncuda bırak. Tanım cümlesindeki
+`-dır` doğru Türkçedir; seriyi kırmak için tanımı bozma.
+
+> Önce: Bu yöntem hızlıdır. Kurulumu kolaydır. Bakımı ucuzdur.
+> Sonra: Bu yöntem hızlı, kurulumu kolay, bakımı da ucuz.
+
+`yıllardır`, `sabahtır`, `bugündür` gibi süre bildiren kelimeler ek sayılmaz.
+
+---
+
+## 11. Ölçülemeyenler: kanaat katmanı
 
 Aşağıdakilerin hiçbirinin sayısı yok ve script hiçbirini yakalamayacak. Bu
 onları atlama gerekçesi değil, değerlendirmenin hangi kısmının ölçüm hangi
@@ -334,6 +359,56 @@ iyelik ve ilgeç zincirleri: "şirketin veri stratejisinin uygulanmasının
 önemi". Türkçe bunu "şirket veriyi nasıl kullanacak" diye sorar. Hiçbir sayım
 bunu göremez, okumak gerekir.
 
+### İngilizce cümle iskeleti
+
+Kelimeler Türkçe, iskelet İngilizce. Aşağıdakiler yapay zeka Türkçesinin en
+sık yapısal izleri. Bu bölüm yucezerey/turkish-anti-ai-skill (MIT) projesinin
+`sentaks-ve-morfoloji.md` dosyasından süzüldü; örnekler kaynağa yeni bilgi
+eklemeyecek biçimde yeniden yazıldı. Hiçbiri sayılamıyor, okumak gerekiyor.
+
+**Sağa dallanan yan cümle.** İngilizce niteleyiciyi ismin arkasına takar,
+Türkçe önüne koyar. "Bir sistem kurduk, bu sistem verileri tarıyor" yerine
+"Verileri tarayan bir sistem kurduk". `Görüyoruz ki kullanıcılar…` yerine
+`Kullanıcıların … görüyoruz`. Sınır: bir ismin önüne ikiden fazla iç içe yan
+cümle yığma, o zaman böl. `Öyle … ki` yerleşik Türkçedir, dokunma.
+
+**Yarık cümle.** "Bunu mümkün kılan şey ekibin deneyimiydi" İngilizce `what
+made this possible was` kalıbı. Türkçe vurguyu yüklemin hemen önüne koyar:
+"Bunu ekibin deneyimi mümkün kıldı." Aynı yolla `İşte tam da bu noktada`,
+`Asıl önemli olan şu ki` dolguları da gereksizleşir.
+
+**`ve` yerine ulaç.** "Veriyi çektik ve sonra temizledik" yerine "Veriyi
+çekip temizledik"; "Trafik arttı ve hata oranı da yükseldi" yerine "Trafik
+arttıkça hata oranı da yükseldi". İki dikkat: ulaç zaman ya da neden bağı
+kurar, kaynakta yalnız yan yana duran iki olayı ulaçla bağlamak yeni bir
+nedensellik uydurmaktır. Ulaçlı yan cümlenin söylenmeyen öznesi ana cümlenin
+öznesi sayılır; özneler farklıysa ulaç kullanma.
+
+**Gereksiz zamir, `bir` ve `kendi`.** Yüklemdeki kişi eki özneyi taşır; açık
+zamir karşıtlık bildirir ("Ben gittim" = başkası değil, ben). `Büyük bir önem
+taşıyor`, `ciddi bir artış gösterdi` gibi kalıp fiillerdeki `bir` İngilizce
+`a/an` izidir; `derin bir iz bıraktı` gibi tekil kullanımlar doğaldır. `Her
+servis kendi veri tabanına bağlanır ve onun kendi yapılandırmasını okur`
+cümlesindeki ikinci `kendi`, `its own` çevirisidir.
+
+**Kof yardımcı fiil.** `Gerçekleştirmek`, `sağlamak`, `sahip olmak`, `ev
+sahipliği yapmak`, `rol oynamak` tek fiilin yerine geçer. "Yüksek hıza
+sahiptir" yerine "Çok hızlı", "Analiz gerçekleştirdi" yerine "Analiz etti",
+"yedeklenmesinin sağlanması gerekmektedir" yerine "yedeklenmeli". Bu öbekler
+Türkçede yerleşik; sorun sıklık. `Katkıda bulunmak` sözlükte var, onu
+sözlükte olmayan `katkı sunmak` ile değiştirme.
+
+**`Bu da … anlamına gelir`.** `which means` kalıbı. "Cache süresi kısa
+tutuldu. Bu da veri tabanı yükünün artması anlamına geliyor." yerine "Cache
+süresi kısa tutulduğu için veri tabanı yükü artıyor." Bağın kaynakta gerçekten
+neden-sonuç olduğundan emin değilsen iki cümle olarak bırak.
+
+**Kanıtsallık kipi.** İngilizce görülen geçmişle öğrenilen geçmişi ayırmaz,
+model de neredeyse hiç `-mış` kullanmaz. Sonradan öğrenilen, kayıttan okunan
+olayda gündelik metinde `-mış` doğal: "Sunucu gece yeniden başlamış." Resmî
+tutanakta kayıtla kesinleşen olgu için `-dı` olağandır; `-mış`ı zorla yayma,
+kesinlik derecesini de değiştirme.
+
 ### -arak / -ıp zincirleri
 
 "Verileri toplayarak, analiz edip raporlayarak karar süreçlerine katkı
@@ -374,3 +449,15 @@ noktalar var", "olabilir"i "öyledir" yapmak.) Bunlar düzyazı hatası değil,
 akıl yürütme ve doğruluk hatası. Ayrı bir işin konusu. Yalnız ikincisinin
 yeniden yazma sırasındaki hâli SKILL.md'de duruyor, çünkü orada metni bozan
 şey editördür.
+
+**yucezerey/turkish-anti-ai-skill'den alınmayanlar.** Sentaks kuralları ve
+ibare listesi alındı; şunlar alınmadı. Bilgi eksikse cümleye `[somut veri: …]`
+gibi yer tutucu koymak: yayına giden metinde boşluk işareti kalmaz, eksik
+olgu ayrı soru olarak sorulur. Yalnız düzeltilmiş metni döndürmek: önce/sonra
+tablosu bu skill'in amacı. Cümle uzunluğu değişkenliği için 0,40 hedefi,
+"400 kelimede 2-3 devrik cümle", "100 kelimede 0,5-2,5 `-maktadır`": proje
+bunların ölçülmediğini kendisi yazıyor, buradaki eşikler iki ölçülmüş metin
+arasında duruyor. `Bununla birlikte`, `öte yandan`, `söz konusu`, `bu
+bağlamda` için "metinde hiç kalmasın" kuralı: hiçbir kelime kendi başına
+yapay değildir ve `söz konusu` bu yazarın kitabında da geçiyor. TDK yazım ve
+noktalama kuralları doğru ama yazarlık işareti değil, yazım denetimi işi.

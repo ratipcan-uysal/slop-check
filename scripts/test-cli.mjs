@@ -20,6 +20,16 @@ const empty = join(temp, "empty.txt");
 writeFileSync(valid, JSON.stringify({ article: paragraph.repeat(3) }));
 writeFileSync(broken, '{"article": "' + paragraph.repeat(3));
 writeFileSync(empty, "");
+// Each Turkish pattern below starts or ends with ö, ç, ş, ı or ü, or opens a
+// sentence with İ. JavaScript's ASCII-only \b skipped all of them until 1.1.0.
+const trEdges = join(temp, "tr-edges.md");
+const trFalse = join(temp, "tr-false.md");
+const trFiller = "Sabah erkenden kalkıp denize yürüdük ve kahvaltıyı taş evin bahçesinde yaptık. ".repeat(4);
+writeFileSync(trEdges, trFiller + "Özetle iş bitti. Kısacası kimse gelmedi. Dijital çağında yaşıyoruz. "
+  + "Toplantı önemli bir rol oynuyor. Rapor yapılmış. Hedef görülmüş. Bu konu önemlidir. İlk olarak dosyayı açtık.");
+const trRun = join(temp, "tr-run.md");
+writeFileSync(trRun, trFiller + "Bu yöntem hızlıdır. Kurulumu kolaydır. Bakımı da ucuzdur. Yıllardır kullanıyoruz.");
+writeFileSync(trFalse, trFiller + "Usta bir düşünür gibi baktı. Dağ buradan görünür. Hâlâ düşünmekte.");
 
 let failures = 0;
 function run(args) {
@@ -54,6 +64,24 @@ try {
     assert.ok(Array.isArray(report.examples));
     assert.ok(report.examples.length > 0);
     assert.equal(report.metrics.length, 11);
+  });
+  console.log("\nTurkish matching");
+  check("Turkish patterns at non-ASCII word edges are counted", () => {
+    const report = JSON.parse(run([trEdges, "--lang=tr", "--json"]).stdout);
+    const n = key => Math.round(report.metrics.find(m => m.key === key).value * report.words / 1000);
+    assert.equal(n("baglayici"), 3, "Özetle, Kısacası, İlk olarak");
+    assert.equal(n("sismis"), 2, "çağında, önemli bir rol oynuyor");
+    assert.equal(n("edilgen"), 2, "yapılmış, görülmüş");
+    assert.equal(n("dir"), 1, "önemlidir");
+  });
+  check("active -ünür and -ünmekte forms are not counted as passive", () => {
+    const report = JSON.parse(run([trFalse, "--lang=tr", "--json"]).stdout);
+    assert.equal(report.metrics.find(m => m.key === "edilgen").value, 0);
+  });
+  check("three -dır endings in a row count as one run, yıllardır does not extend it", () => {
+    const report = JSON.parse(run([trRun, "--lang=tr", "--json"]).stdout);
+    const m = report.metrics.find(x => x.key === "dirseri");
+    assert.equal(Math.round(m.value * report.words / 1000), 1);
   });
   check("valid JSON still produces metrics", () => {
     const result = run([valid, "--lang=en", "--json"]);
