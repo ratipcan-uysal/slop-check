@@ -1,6 +1,6 @@
 ---
 name: slop-check
-description: Measure and remove the structural signatures of machine-written prose in Turkish and English. Runs a deterministic script that counts em dashes, not-X-but-Y frames, sentence-opener concentration, contraction rate, and language-specific tells, reports each against a calibrated threshold, then rewrites what is over the line and shows a before/after table. Use this whenever writing or editing prose a human will read, such as blog posts, landing pages, documentation, reports, essays, newsletters, README bodies, long commit messages - and always before delivering substantial written content. Trigger it on "this reads like AI", "make it sound human", "anti-slop", "no em dashes", "yapay zeka yazmis gibi", "daha insan olsun", "em dashleri ucur", or any request to check, humanise, de-slop, or tighten a draft's voice.
+description: Measure and revise Turkish or English prose that sounds machine-written, preserving meaning and authorial voice. Use for anti-slop checks, humanising a draft, or improving natural prose before delivery. Reports reproducible before/after metrics and reviews their actual passages; thresholds do not authorize meaning changes.
 ---
 
 # slop-check
@@ -47,16 +47,23 @@ verify, disagree with, or hold you to.
    baseline to show at the end.
 
    ```bash
-   node ~/.claude/skills/slop-check/scripts/measure.mjs <file...> [--lang=tr|en|auto]
+   node <skill-directory>/scripts/measure.mjs <file...> [--lang=tr|en|auto]
    ```
 
    It reads `.md`, `.txt`, `.mdx` and `.json` content files (from JSON it
    pulls only strings of four or more words, so slugs and URLs stay out).
    Multiple files are concatenated. Add `--json` for machine-readable output,
-   `--quotes` to print example sentences for the English not-X-but-Y frame, and
+   `--quotes` to print example sentences for the English not-X-but-Y frame
+   (inside the JSON object when combined with `--json`), and
    `--skip-blockquotes` when the document quotes bad writing as examples (a
    style guide measures itself as slop otherwise).
-   Exit code is 1 when anything is flagged, 0 when nothing is.
+   Exit code is 1 when anything is flagged, 0 when nothing is, and 2 when the
+   input cannot be measured. A missing report is not a zero-flag result.
+
+   Resolve the script from the loaded skill directory. The skill can be linked
+   into Codex or Claude; do not assume a particular install path. Save the input
+   filenames and hashes with the measurement. For a new draft without a prior
+   version, say the baseline starts at the first full draft.
 
    If Node is unavailable, count by hand with grep. Don't skip the step and edit on instinct. The whole point here is that
    instinct is what produced the draft.
@@ -66,9 +73,21 @@ verify, disagree with, or hold you to.
    `references/tells-en.md` or `references/tells-tr.md`, which explain every
    tell, why it reads as machine-written, and how to repair it.
 
+   For source-based edits, also read
+   [references/source-edits.md](references/source-edits.md). Inspect the matched
+   wording before deciding what to change; the script uses regexes rather than
+   grammatical analysis. A legitimate list or uncertainty can trigger a flag.
+
 3. **Fix by restructuring, never by substituting.** This is the part that usually goes wrong. Replacing an em dash with a comma leaves the sentence with the same
    rhythm and the same three-part shape, so it still reads as generated, and now it's evasive too. Break the sentence in two, or reorder it, or cut the
    clause that was doing nothing. The em dash count is a symptom. The sentence is what you're fixing.
+
+   Splitting is one tool, not the default. Clauses joined by a semicolon, a
+   colon or a parenthesis often carry one thought in the author's own rhythm.
+   Chopping them into short sentences makes the text choppier and the length
+   spread lower, not higher. Spread rises when some sentences get longer too:
+   join two short sentences that carry one thought as often as you split a long
+   one.
 
    Same for the not-X-but-Y frame. `It is not a technology problem, it is a
    culture problem` does not improve by becoming `It is a culture problem, not
@@ -91,7 +110,7 @@ verify, disagree with, or hold you to.
    Change only the passages responsible. Leaving an unaffected sentence alone
    is not laziness. Rewriting it for variety is how the voice goes.
 
-4. **Measure again and show the table.** Report before and after side by side.
+4. **Read for meaning and grammar, then measure again.** Report before and after side by side.
    If a metric didn't move, say so rather than quietly dropping it.
 
    ```
@@ -102,12 +121,16 @@ verify, disagree with, or hold you to.
    | Sentences from "The"|  18.7% |  9.4% |
    ```
 
-   **Measure once more, not repeatedly.** Confirm the edit did not introduce a
-   new distortion, then stop. There is no version of this where every number
-   reaches zero and the text is better for it, and a loop that runs until the
-   script is silent will contort the prose to get there.
+   **Measure the reviewed revision once; do not chase silence.** There is no
+   version of this where every number reaches zero and the text is better for
+   it. A loop that edits until the script is silent will contort the prose.
+   If later reading finds a real defect, fix it. A changed text needs a new
+   measurement, or an explicit note that the existing result belongs to an
+   earlier version. Never leave an error merely to obey a measurement limit.
 
-5. **Then read it with your eyes.** The script can't see the things at the bottom of this file. A draft that passes every metric can still be lifeless.
+5. **Check the final version with your eyes.** The script cannot see the
+   things at the bottom of this file. A draft that passes every metric can
+   still be lifeless. Any resulting edit invalidates the measured version.
 
 ## What you must not do while fixing
 
@@ -142,6 +165,16 @@ repetitive for a reason, the reason outranks the threshold.
 **Do not swap synonyms mechanically.** A flagged phrase is a prompt to rewrite
 the sentence, not to find a different word for the same empty gesture.
 
+**Do not mistake the wording for the meaning.** Keeping the meaning means
+keeping the claim and its strength, not the phrase that carried it. A stock
+phrase such as `büyük önem taşımaktadır`, `hayati önem taşır`, `katkı sağlar`
+or `son derece kritik` makes a claim at some strength. Say that claim in plain
+words at the same strength (`büyük önem taşımaktadır` → `önemli`). Check the
+strength both ways: `en değerli`, `ilk şart` and `belirleyici` overstate
+`önemli`, and a dropped `olabilir` understates it. Leaving the stock phrase in
+place because it "carries meaning" is the opposite failure, and it is the one a
+careful reviser makes.
+
 ## Hard failures and the verdict
 
 The section above is the reasoning. This is the checkable version of it. Any
@@ -159,9 +192,9 @@ all ways of damaging the text while improving its score.
 - Prose left ungrammatical or unclear by the edit
 
 Note that these apply when there is a source to be unfaithful to. Editing
-somebody's draft, they all bite. Measuring something written from scratch in
-this same session, only the last one does, and the rest are simply not in play.
-Say which situation you are in rather than pretending to check all nine.
+somebody's draft, they all bite. For original writing without a source draft,
+source-fidelity checks have no before-text to compare. Say so. This does not
+license invented facts or remove ordinary accuracy checks.
 
 **Close with one of three verdicts, and give the evidence for it.**
 
@@ -174,6 +207,12 @@ Say which situation you are in rather than pretending to check all nine.
   editing sentence by sentence. Say which, and go back to what the text is
   trying to argue.
 
+For remaining flags, identify a passage and say whether it needs repair or
+serves a legitimate purpose. Keep the metric verdict separate from delivery
+readiness: `REVISE` can include a source-required list that should stay. Never
+claim `PASSED` by hiding a flag, and never call a useful source condition bad
+writing solely because it matched a regex.
+
 Do not attach a score. A number nobody can reproduce is worse than a sentence
 saying what is wrong and where, because it invites a discussion about the
 number instead of about the passage.
@@ -181,6 +220,11 @@ number instead of about the passage.
 ## What the metrics mean
 
 Full explanations and repairs live in the reference files. The short version:
+
+The labels name candidate patterns. In Turkish, the three-item regex does not
+identify adjectives, and the passive regex also matches words such as
+`olabilir` and `gerekebilir` through their `ilir` ending. Report those as regex
+matches; decide their grammatical role and source purpose by reading.
 
 | Metric | Reads as machine-written when |
 |---|---|
@@ -209,14 +253,15 @@ Full explanations and repairs live in the reference files. The short version:
 They are not invented. Each one sits between two measured populations.
 
 **Turkish negative control:** 87,000 words of published human writing (two of
-the author's own books). Zero of twelve metrics flagged after the citation-dash
-correction. Before that correction the em dash metric flagged his own book at
+the author's own books). At calibration, zero of twelve metrics flagged after
+the citation-dash correction. Before that correction the em dash metric flagged his own book at
 6.0 per 1k, because 272 of its 274 em dashes were attributions of the
 form `— Albert Camus`. That near miss is why the script strips citation and dialogue
 dashes before counting, and it's a good reminder that a metric which fires on
 genuinely human writing is worse than no metric at all.
 
-**Turkish positive control:** `fixtures/tr-slop.md`. Nine of twelve flagged.
+**Turkish positive control:** `fixtures/tr-slop.md`. The current script flags
+ten of thirteen metrics.
 The separation is roughly an order of magnitude on most: 0.7 against 15.2 for
 the `sadece` frame, 0.2 against 20.2 for `-maktadır`, 0.4 against 35.4 for the
 ready-made connectives.
@@ -257,15 +302,17 @@ time, since the before/after table is the point.
 
 **English:** an 8,000-word draft that the author rejected as machine-written,
 against the same text after a rewrite he accepted. Five of ten flagged before,
-zero after. `fixtures/en-slop.md` is a compact positive that trips nine of ten.
+zero after. The current script flags ten of eleven metrics on
+`fixtures/en-slop.md`. Check current fixture counts against the installed script.
+The calibration counts above describe an earlier version.
 
 **Self-test.** After changing anything in the script, rerun all of these:
 
 ```bash
-S=~/.claude/skills/slop-check
-node $S/scripts/measure.mjs $S/SKILL.md --lang=en             # expect: nothing flagged
-node $S/scripts/measure.mjs $S/fixtures/en-slop.md --lang=en  # expect: 9 of 10
-node $S/scripts/measure.mjs $S/fixtures/tr-slop.md --lang=tr  # expect: 9 of 12
+S=/absolute/path/to/loaded/slop-check
+node "$S/scripts/measure.mjs" "$S/SKILL.md" --lang=en             # expect: nothing flagged
+node "$S/scripts/measure.mjs" "$S/fixtures/en-slop.md" --lang=en  # expect: 10 of 11
+node "$S/scripts/measure.mjs" "$S/fixtures/tr-slop.md" --lang=tr  # expect: 10 of 13
 ```
 
 The two reference files are meant to trip the detector and always will, because

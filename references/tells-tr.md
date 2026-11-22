@@ -9,6 +9,11 @@ Aşağıdaki eşikler tahmin değil. Yayımlanmış 87.000 kelimelik insan Türk
 (iki kitap) ile sentetik bir makine Türkçesi örneği arasında ölçüldü. Çoğu
 metrikte aradaki fark on kat.
 
+Bu işaretler yazarlığı kanıtlamaz; incelenecek cümleleri gösterir. Aşağıdaki
+örnekler dil düzenlemesidir. Kaynakta olmayan özne, süre, sonuç veya neden
+uydurma. Gerçek ihtimalleri ve gerekli koşulları sayı düşürmek için silme.
+Kaynağa dayanan metinlerde ayrıca [source-edits.md](source-edits.md) kullan.
+
 ## İçindekiler
 
 1. sadece … değil, aynı zamanda
@@ -39,10 +44,12 @@ bir tane çıkar, çünkü iki ismi birbirine bağlamanın en ucuz yolu.
 **Yanlış onarım:** "yalnızca ... değil, bunun yanında" yapmak. Aynı kalıp,
 farklı kelimeler.
 
-**Doğrusu:** İki cümleye böl, ya da ikinci yarıyı at.
+**Onarım:** İki iddia ayrı değer taşıyorsa ikisini de koru. İkinci kısmı
+yalnızca yeni anlam taşımadığında çıkar. Kalıbı kaldırmak, iddiayı kaldırmak
+için gerekçe değildir.
 
 > Önce: Veri sadece bir varlık değil, aynı zamanda karar almanın temelidir.
-> Sonra: Kararlar veriyle alınıyor.
+> Sonra: Veri bir varlık; karar almanın da temeli.
 
 ---
 
@@ -57,13 +64,15 @@ farklı kelimeler.
 gösterir. Kim söylüyor belli değil, itiraz edilecek bir özne yok. Üretilen
 metin bu tonu sever çünkü sorumluluk almadan otorite kurar.
 
-**Doğrusu:** yazan Türkçe "önemli", "gerekiyor", "sağlıyor" der. Özneyi geri
-koy: kim gerekli buluyor?
+**Onarım:** Türe uygunsa "önemli", "gerekiyor", "sağlıyor" gibi doğal
+çekimler kullan. Özneyi ancak kaynakta varsa belirt. Resmî eki kaldırırken
+kesinliği, zamanı veya sorumluluğu değiştirme.
 
 > Önce: Doğru metriklerin belirlenmesi büyük önem taşımaktadır.
-> Sonra: Yanlış metrik seçersen geri kalan her şey boşa gider.
+> Sonra: Doğru metrikleri belirlemek çok önemli.
 
-İkinci cümle bir iddia. Birincisi bir ses tonu.
+Bu değişiklik cümleyi sadeleştirir; eksik gerekçeyi tamamlamaz. Gerekçe
+kaynakta yoksa "yanlış seçersen her şey boşa gider" gibi bir sonuç ekleme.
 
 ---
 
@@ -80,12 +89,16 @@ Sorun kullanımı değil, yoğunluğu. Üretilen metin hiçbir şeyin arkasında
 istemez, o yüzden her fiili olabilirliğe çevirir. Sonuçta hiçbir cümle yanlış
 çıkamaz, ama hiçbiri bir şey de söylemez.
 
-**Doğrusu:** bir şey söyle ve arkasında dur. Gerçekten belirsizse belirsizliği
-adlandır, ekle gizleme.
+**Onarım:** Kaynağın gerçekten ihtimal mi, yeterlik mi anlattığını kontrol
+et. Gerçek belirsizliği koru. Eşiğin aşılması bütün yeterlik eklerini kaldırma
+talimatı değildir. Boş bir kaçamak varsa yalnızca o pasajı düzelt.
 
 > Önce: Ekiplerin veri okuryazarlığı geliştirilebilir.
-> Sonra: Ekibin yarısı grafiği yanlış okuyor. Bunu eğitimle çözebiliriz, ama
-> denemedik.
+> Sonra: Ekiplerin veri okuryazarlığını geliştirmek mümkün.
+
+Olasılık korunuyor; kimin geliştireceğine dair yeni bilgi eklenmiyor. Ekibin
+yarısının grafik okuyamadığı ve eğitimin çözüm olduğu gibi kaynakta bulunmayan
+bilgiler eklenmiyor.
 
 ---
 
@@ -102,8 +115,9 @@ bağlamda" hiçbir bağlam kurmaz; sadece bir sonraki cümlenin geleceğini habe
 verir. "Unutmamak gerekir ki" ise okura ne yapması gerektiğini söyleyen boş bir
 emirdir.
 
-**Doğrusu:** çoğunu sil ve paragrafı oku. Fikir zaten bağlıysa bağlaç gereksiz;
-bağlı değilse bağlaç kurtarmaz, o zaman eksik olan cümledir.
+**Onarım:** Bağlacın hangi ilişkiyi kurduğuna bak. İlişki zaten açıksa gereksiz
+bağlacı çıkar. Sıra, neden veya istisna bildiriyorsa bu anlamı koru. Eksik
+ilişkiyi kaynak desteklemiyorsa yeni bir gerekçe uydurma.
 
 Türkçenin gerçek bağlayıcıları kısa ve konuşkandır: "ama", "yani", "oysa",
 "gerçi", "zaten". Bunlar sayılmaz çünkü kalıp değil, ses.
@@ -122,10 +136,14 @@ Türkçenin gerçek bağlayıcıları kısa ve konuşkandır: "ama", "yani", "oy
 "Teknoloji dünyasında" İngilizce `in the world of technology` kalıbının
 çevirisi ve cümleden çıkarıldığında hiçbir şey kaybolmaz.
 
-**Doğrusu:** önemi iddia etme, sonucunu yaz.
+**Onarım:** Kaynak sonucu açıklıyorsa o açıklamayı kullan. Açıklamıyorsa
+cümleyi sadeleştir veya eksik gerekçeyi belirt; sonuç uydurma.
 
 > Önce: Veri kalitesi kritik öneme sahiptir.
-> Sonra: Veri kirliyse aylarca yanlış grafiğe bakarsın ve kimse fark etmez.
+> Sonra: Veri kalitesi çok önemli.
+
+Bu cümle hâlâ bir önem iddiasıdır. "Aylarca yanlış grafiğe bakarsın ve kimse
+fark etmez" eklemek kaynakta olmayan süre ve sonuçları ileri sürer.
 
 ---
 
@@ -140,8 +158,9 @@ Türkçenin gerçek bağlayıcıları kısa ve konuşkandır: "ama", "yani", "oy
 metninde de bolca geçer. Ölçüm bunu ayıramaz, o yüzden eşik insan tabanının
 epey üstünde. Tell olan şey sıklık değil, üçüncü öğenin gereksizliği.
 
-**Doğrusu:** kaç tane olduğunu say. Üçüncü sıfat ritim için eklendiyse çıkar.
-Beş tane varsa beşini yaz.
+**Onarım:** Her öğenin ne kattığını kontrol et. Üçüncü sıfat yalnızca ritim
+için eklendiyse çıkar. Üç ayrı koşul veya kavram varsa üçünü de koru; beş tane
+varsa beşini yaz. Betik sıfatları tanımaz, sözcük kalıbını eşleştirir.
 
 ---
 
@@ -156,11 +175,16 @@ Beş tane varsa beşini yaz.
 Türkçe neredeyse tamamen edilgendir çünkü kimin yapacağını bilmez ve bilmediğini
 belli etmek istemez.
 
-**Doğrusu:** özneyi geri koy. Kim çıkaracak envanteri? O cümlede o kişi yoksa,
-plan da yok demektir.
+**Onarım:** Kaynakta belirtilen özneyi öne al. Özne belirtilmemişse kişi veya
+ekip uydurma. Edilgen, bilinmeyen ya da önemsiz aktörü belirtmeden anlatmak
+için de kullanılabilir; her kullanım hata değildir.
 
-> Önce: Veri kaynaklarının envanteri çıkarılmalıdır.
-> Sonra: Envanteri veri ekibi çıkarır, iki haftada biter.
+> Önce: Veri ekibi tarafından veri kaynaklarının envanteri çıkarılmalıdır.
+> Sonra: Veri ekibi veri kaynaklarının envanterini çıkarmalı.
+
+Aktör ve gereklilik korunuyor; yeni süre eklenmiyor. Betikteki `ilir` sonu
+`olabilir`, `gerekebilir` ve `gösterebilir` sözcüklerini de eşleştirebilir.
+Bu eşleşmeler edilgen çatı teşhisi değildir; gerçek ihtimali koru.
 
 ---
 
@@ -187,10 +211,15 @@ virgül ya da iki nokta kullanır. Metinde sık geçiyorsa büyük ihtimalle
 Türkçede bu genelde "Bu" olur: "Bu bağlamda", "Bu sayede", "Bu noktada",
 "Bu süreçte". İnsan tabanı %5-6,8; makine örneğinde %16,7.
 
-**Doğrusu:** Türkçe cümle sırası esnektir, bunu kullan. Vurgulanacak öğeyi
-yükleme yaklaştır, cümleyi zarfla, nesneyle ya da yan cümleyle aç. "Bu sayede
-karar vericiler güvenilir bir temele kavuşur" yerine "Karar vericiler artık
-neye baktıklarını biliyor."
+**Onarım:** Anlamı koruyarak cümle sırasını değiştir; neden ilişkisini yalnızca
+tekrar olduğu için silme. Başlangıç sözcüğünü değiştirmek tek başına daha iyi
+metin sağlamaz.
+
+> Önce: Bu sayede karar vericiler güvenilir bir temele kavuşur.
+> Sonra: Karar vericiler bu sayede güvenilir bir temele kavuşur.
+
+Vurgu değişti, iddia değişmedi. "Neye baktıklarını biliyor" farklı bir iddiadır;
+kaynakta yoksa akıcılık uğruna eklenmez.
 
 ---
 

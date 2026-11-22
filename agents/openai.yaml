@@ -1,0 +1,4 @@
+interface:
+  display_name: "Slop Check"
+  short_description: "Anlamı koruyarak Türkçe ve İngilizce metni düzelt"
+  default_prompt: "$slop-check ile bu metni ölç, anlamını ve belirsizliğini koruyarak doğal dile düzelt; önce/sonra sonuçlarını ve kalan bayrakları bildir."

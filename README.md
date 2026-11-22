@@ -32,14 +32,15 @@ slop-check  ·  draft.md
 5 of 11 over the line
 ```
 
-Exit code is 1 when something's flagged and 0 when nothing is, so it drops into
-a pre-commit hook. Node built-ins only: no install, no network, nothing leaves
+Exit code is 1 when something's flagged, 0 when nothing is, and 2 for an invalid
+or unreadable input. A failed measurement has no metric report. Node built-ins only: no install, no network, nothing leaves
 the machine.
 
 ## Where the thresholds come from
 
-Not from taste. Each sits between two measured populations, and the corpora are
-in `fixtures/` so you can check.
+The figures below describe the original calibration reported by this project.
+The human files in `fixtures/` are excerpts for regression checks; they do not
+reproduce the full 87,000-word corpus or the full original English before/after pair.
 
 | Corpus | Flags |
 |---|---|
@@ -119,7 +120,7 @@ words, so slugs and URLs stay out.
 ```
 --lang=tr|en|auto     default auto
 --json                machine-readable output
---quotes              print example sentences for the not-X-but-Y frame
+--quotes              print example sentences; with --json, use its examples field
 --skip-blockquotes    for documents that quote bad writing as examples
 ```
 

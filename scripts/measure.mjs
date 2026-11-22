@@ -7,7 +7,7 @@
  * length, one construction repeated forty times, a tidy closing line on every
  * paragraph. This measures shape.
  *
- *   node measure.mjs <file...> [--lang tr|en|auto] [--json] [--quotes]
+ *   node measure.mjs <file...> [--lang=tr|en|auto] [--json] [--quotes]
  *
  * Node built-ins only. No install step, nothing leaves the machine.
  */
@@ -17,13 +17,23 @@ import { readFileSync } from "node:fs";
 const argv = process.argv.slice(2);
 const flags = new Set(argv.filter(a => a.startsWith("--")));
 const files = argv.filter(a => !a.startsWith("--"));
-const langArg = (argv.find(a => a.startsWith("--lang=")) || "").split("=")[1] || "auto";
+const langOption = argv.find(a => a.startsWith("--lang="));
+const langArg = langOption === undefined ? "auto" : langOption.slice("--lang=".length);
 const asJson = flags.has("--json");
 const showQuotes = flags.has("--quotes");
 // Style guides quote the patterns they warn about, usually inside blockquotes.
 // Counting those examples as usage makes a document about bad writing look
 // like bad writing.
 const skipBlockquotes = flags.has("--skip-blockquotes");
+
+const knownFlags = new Set(["--json", "--quotes", "--skip-blockquotes"]);
+const unknownFlag = [...flags].find(a => !a.startsWith("--lang=") && !knownFlags.has(a));
+if (unknownFlag || !["tr", "en", "auto"].includes(langArg)) {
+  console.error(unknownFlag
+    ? `Unknown option: ${unknownFlag}. Use --lang=tr|en|auto for language selection.`
+    : `Unsupported language: ${langArg || "(empty)"}. Expected tr, en or auto.`);
+  process.exit(2);
+}
 
 if (!files.length) {
   console.error("usage: measure.mjs <file...> [--lang=tr|en|auto] [--json] [--quotes] [--skip-blockquotes]");
@@ -45,7 +55,8 @@ function stringsFromJson(node, out = []) {
 function extract(path) {
   const raw = readFileSync(path, "utf8");
   if (path.endsWith(".json")) {
-    try { return stringsFromJson(JSON.parse(raw)).join("\n\n"); } catch { /* fall through */ }
+    try { return stringsFromJson(JSON.parse(raw)).join("\n\n"); }
+    catch (error) { throw new Error(`${path}: invalid JSON (${error.message})`); }
   }
   return raw
     .replace(/^---\n[\s\S]*?\n---\n/, "")        // frontmatter
@@ -62,7 +73,13 @@ function extract(path) {
     .replace(/[*_`>]/g, "");
 }
 
-const text = files.map(extract).join("\n\n").replace(/\r/g, "");
+let text;
+try {
+  text = files.map(extract).join("\n\n").replace(/\r/g, "");
+} catch (error) {
+  console.error(`Cannot measure input: ${error.message}`);
+  process.exit(2);
+}
 
 // ── segmentation ─────────────────────────────────────────────────
 const ABBREV = /\b(vb|vs|bkz|Dr|Prof|Doç|Av|Sn|St|Mr|Mrs|Ms|Jr|Sr|e\.g|i\.e|etc|No|Nr)\.$/i;
@@ -195,9 +212,10 @@ if (lang === "en") {
 
 // ── output ───────────────────────────────────────────────────────
 const flagged = METRICS.filter(m => m.bad);
+const quoteExamples = matches(/[^.!?]*\b(is|are|it's)\s+not\s+(just\s+)?[^.,;:]{2,60}[,—–]?\s*(it|they|that|this)('s|s|\s+is|\s+are)\b[^.!?]*[.!?]/gi).slice(0, 5).map(s => s.trim());
 
 if (asJson) {
-  console.log(JSON.stringify({ lang, words: W, sentences: sents.length, meanSentence: Number(mean.toFixed(1)), metrics: METRICS, flagged: flagged.map(m => m.key) }, null, 2));
+  console.log(JSON.stringify({ lang, words: W, sentences: sents.length, meanSentence: Number(mean.toFixed(1)), metrics: METRICS, flagged: flagged.map(m => m.key), ...(showQuotes && lang === "en" ? { examples: quoteExamples } : {}) }, null, 2));
 } else {
   const pad = (s, n) => String(s).padEnd(n);
   const lpad = (s, n) => String(s).padStart(n);
@@ -216,9 +234,10 @@ if (asJson) {
   console.log(`Most repeated openers: ${topOpeners.slice(0, 5).map(([w, n]) => `${w} ${((100 * n) / sents.length).toFixed(1)}%`).join(", ")}\n`);
 }
 
-if (showQuotes && lang === "en") {
-  const ex = matches(/[^.!?]*\b(is|are|it's)\s+not\s+(just\s+)?[^.,;:]{2,60}[,—–]?\s*(it|they|that|this)('s|s|\s+is|\s+are)\b[^.!?]*[.!?]/gi).slice(0, 5);
-  if (ex.length) { console.log("Examples of not-X-but-Y:"); ex.forEach(e => console.log("  " + e.trim())); console.log(); }
+if (!asJson && showQuotes && lang === "en" && quoteExamples.length) {
+  console.log("Examples of not-X-but-Y:");
+  quoteExamples.forEach(e => console.log("  " + e));
+  console.log();
 }
 
 process.exit(flagged.length ? 1 : 0);
